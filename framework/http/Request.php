@@ -13,9 +13,9 @@ final class Request
 	{
 	}
 
-	public static function createFromGlobals(): static
+	public static function createFromGlobals(): self
 	{
-		return new static($_GET, $_POST, $_COOKIE, $_FILES, $_SERVER);
+		return new self($_GET, $_POST, $_COOKIE, $_FILES, $_SERVER);
 	}
 
 }
