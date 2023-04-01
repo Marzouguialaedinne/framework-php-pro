@@ -11,21 +11,26 @@ final class Kernel
 	public function handle(Request $request): Response
 	{
 		$dispatcher = simpleDispatcher(function (RouteCollector $routeCollector){
-			$routeCollector->addRoute('GET', '/', function () {
-				$content = "Hello Yassine";
-				return new Response($content, 200, []);
-			});
+
+			$routes = include BASE_PATH . '/routes/web/routes.php';
+
+			foreach ($routes as $route) {
+				$routeCollector->addRoute(...$route);
+			}
 		});
 
 		$routeInfo = $dispatcher->dispatch($request->getHttpMethod(), $request->getPath());
 
-		[$status, $handler, $vars] = $routeInfo;
+		[$status, [$controller, $method], $vars] = $routeInfo;
 
 
 		if($status != $dispatcher::FOUND) {
 			throw new \HttpException();
 		}
-		return $handler($vars);
+
+		$response = call_user_func_array([new $controller(), $method], $vars);
+
+		return $response;
 	}
 
 }
