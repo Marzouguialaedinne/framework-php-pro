@@ -1,0 +1,20 @@
+{
+  "name": "marzougui/framework-php-pro",
+  "description": "description",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Alaedinne",
+      "email": "alaedinne.marzougui@esprit.tn"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "App\\" : "src/",
+      "App\\framework\\": "framework/"
+    }
+  },
+  "require": {
+  }
+}
