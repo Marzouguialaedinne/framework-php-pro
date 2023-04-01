@@ -17,7 +17,7 @@ final class Kernel
 			});
 		});
 
-		$routeInfo = $dispatcher->dispatch('GET', '/');
+		$routeInfo = $dispatcher->dispatch($request->getHttpMethod(), $request->getPath());
 
 		[$status, $handler, $vars] = $routeInfo;
 
