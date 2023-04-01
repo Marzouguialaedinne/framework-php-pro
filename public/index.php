@@ -10,7 +10,7 @@ require_once BASE_PATH . '/vendor/autoload.php';
 
 $request = Request::createFromGlobals();
 
-// create kernel  and some login dispatcher route
+// create kernel and some login dispatcher route
 $kernel = new Kernel();
 
 $response = $kernel->handle($request);
